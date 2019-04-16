@@ -1,0 +1,1023 @@
+openapi: 3.0.0
+info:
+  title: RapiDevKit
+  description: You can obtain JWT token from login API
+  version: 0.1
+servers:
+  - url: http://localhost:3000/api
+    description: Local server for testing
+paths:
+  /login:
+    post:
+      summary: Login API
+      security: []   # No security
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:      # Request body contents
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              example:   # Sample object
+                username: admin
+                password: 62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5
+      responses:
+        '200':
+          description: OK
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /verifyToken:
+    post:
+      summary: Verify token API
+      security: [] #No security
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /changePassword:
+    post:
+      summary: Change password API
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwordNew:
+                  type: string
+                passwordOld:
+                  type: string
+      responses:
+        '200':
+          description: OK
+                
+
+  #-----  Block  -----
+  /blocks/:
+    post:
+      summary: CRUD ACTION create
+      tags:
+        - Block
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Block"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Actyve:
+                  type: boolean
+                FontendAPIHook:
+                  type: string
+    get:
+      summary: CRUD ACTION list
+      tags:
+        - Block
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Block"
+    
+  /blocks/{id}:
+    delete:
+      summary: CRUD ACTION delete
+      tags:
+        - Block
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION get
+      tags:
+        - Block
+      parameters:
+        - name: id
+          in: path
+          description: Id 
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Block"
+    post:
+      summary: CRUD ACTION update
+      tags:
+        - Block
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Block"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Block"
+    
+  #-----  BlockType  -----
+  /blocktypes/:
+    post:
+      summary: CRUD ACTION create
+      tags:
+        - BlockType
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlockType"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Code:
+                  type: string
+                Name:
+                  type: string
+    get:
+      summary: CRUD ACTION list
+      tags:
+        - BlockType
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlockType"
+    
+  /blocktypes/{id}:
+    delete:
+      summary: CRUD ACTION delete
+      tags:
+        - BlockType
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION get
+      tags:
+        - BlockType
+      parameters:
+        - name: id
+          in: path
+          description: Id 
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlockType"
+    post:
+      summary: CRUD ACTION update
+      tags:
+        - BlockType
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlockType"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BlockType"
+    
+  /blocktypes/findByName/{key}:
+    get:
+      summary: CRUD ACTION findByName
+      tags:
+        - BlockType
+      parameters:
+        - name: key
+          in: path
+          description: Id of the resource Name to search
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlockType"
+    
+  #-----  Item  -----
+  /items/:
+    post:
+      summary: CRUD ACTION create
+      tags:
+        - Item
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Active:
+                  type: boolean
+                Created:
+                  type: integer
+                Data:
+                  type: string
+                Modified:
+                  type: integer
+                Order:
+                  type: integer
+                Protected:
+                  type: boolean
+                Status:
+                  type: string
+    get:
+      summary: CRUD ACTION list
+      tags:
+        - Item
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+    
+  /items/{id}:
+    delete:
+      summary: CRUD ACTION delete
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION get
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          description: Id 
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+    post:
+      summary: CRUD ACTION update
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Item"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Item"
+    
+  /items/findByType/{key}:
+    get:
+      summary: CRUD ACTION findByType
+      tags:
+        - Item
+      parameters:
+        - name: key
+          in: path
+          description: Id della risorsa Type da cercare
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+    
+  /items/{id}/getLink:
+    get:
+      summary: CRUD ACTION getLink
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          description: ID of Item from Link
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION getLink
+      tags:
+        - Item
+      parameters:
+        - name: id
+          in: path
+          description: ID of Item from Link
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+    
+  #-----  Role  -----
+  /roles/:
+    post:
+      summary: CRUD ACTION create
+      tags:
+        - Role
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Role"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+    get:
+      summary: CRUD ACTION list
+      tags:
+        - Role
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Role"
+    
+  /roles/{id}:
+    delete:
+      summary: CRUD ACTION delete
+      tags:
+        - Role
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION get
+      tags:
+        - Role
+      parameters:
+        - name: id
+          in: path
+          description: Id 
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Role"
+    post:
+      summary: CRUD ACTION update
+      tags:
+        - Role
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Role"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Role"
+    
+  #-----  Status  -----
+  #-----  Type  -----
+  /types/:
+    post:
+      summary: CRUD ACTION create
+      tags:
+        - Type
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Type"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                Schema:
+                  type: string
+                Validation:
+                  type: string
+                Visualization:
+                  type: string
+    get:
+      summary: CRUD ACTION list
+      tags:
+        - Type
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Type"
+    
+  /types/{id}:
+    delete:
+      summary: CRUD ACTION delete
+      tags:
+        - Type
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION get
+      tags:
+        - Type
+      parameters:
+        - name: id
+          in: path
+          description: Id 
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Type"
+    post:
+      summary: CRUD ACTION update
+      tags:
+        - Type
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Type"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Type"
+    
+  /types/findByName/{key}:
+    get:
+      summary: CRUD ACTION findByName
+      tags:
+        - Type
+      parameters:
+        - name: key
+          in: path
+          description: Id of the resource Name to search
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Type"
+    
+  #-----  User  -----
+  /Users/{id}/changePassword:
+    post:
+      summary: Change password of user from admin
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+    
+  /Users/:
+    post:
+      summary: CRUD ACTION create
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mail:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                surname:
+                  type: string
+                username:
+                  type: string
+    get:
+      summary: CRUD ACTION list
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    
+  /Users/{id}:
+    delete:
+      summary: CRUD ACTION delete
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: CRUD ACTION get
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: Id 
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    post:
+      summary: CRUD ACTION update
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+    
+    
+  #-----  User  -----
+  /Users/{id}/changePassword:
+    post:
+      summary: Change password by admin API
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwordNew:
+                  type: string
+                passwordAdmin:
+                  type: string
+      responses:
+        '200':
+          description: OK
+  /Users/{id}:
+    post:
+      summary: Update User API
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+    delete:
+      summary: Delete User API
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /Users:
+    post:
+      summary: Create User API
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: 'string'
+                password: 
+                  type: 'string'
+                mail: 
+                  type: 'string'
+                name: 
+                  type: 'string'
+                surname: 
+                  type: 'string'
+                roles: 
+                  type: array
+                  items:
+                    type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    
+# JWT security
+security:
+  - bearerAuth: [] 
+  
+  
+# Components
+components:
+
+  # Security
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+
+  # Data Model
+  schemas:
+    User:
+      properties:
+        username:
+          type: 'string'
+        password: 
+          type: 'string'
+        mail: 
+          type: 'string'
+        name: 
+          type: 'string'
+        surname: 
+          type: 'string'
+        roles: 
+          type: array
+          items:
+            type: string
+      required:
+        - username
+        - password
+        
+
+    Block:
+      properties:
+        _id:
+          type: string
+        Actyve:
+          type: boolean
+        FontendAPIHook:
+          type: string
+      required:
+        -  _id
+        - Actyve
+      
+    
+    BlockType:
+      properties:
+        _id:
+          type: string
+        Code:
+          type: string
+        Name:
+          type: string
+      required:
+        -  _id
+        - Name
+      
+    
+    Item:
+      properties:
+        _id:
+          type: string
+        Active:
+          type: boolean
+        Created:
+          type: integer
+        Data:
+          type: string
+        Modified:
+          type: integer
+        Order:
+          type: integer
+        Protected:
+          type: boolean
+        Status:
+          type: string
+      required:
+        -  _id
+        - Active
+      
+    
+    Role:
+      properties:
+        _id:
+          type: string
+      required:
+        -  _id
+      
+    
+    Status:
+      properties:
+        _id:
+          type: string
+      required:
+        -  _id
+      
+    
+    Type:
+      properties:
+        _id:
+          type: string
+        Name:
+          type: string
+        Schema:
+          type: string
+        Validation:
+          type: string
+        Visualization:
+          type: string
+      required:
+        -  _id
+      
+    
+    User:
+      properties:
+        _id:
+          type: string
+        mail:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+        surname:
+          type: string
+        username:
+          type: string
+      required:
+        -  _id
+        - password
+        - username
+      
+    

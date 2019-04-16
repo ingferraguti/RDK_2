@@ -1,0 +1,70 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Item Edit</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-header">
+        <i class="fa fa-edit"></i> Edit
+    </div>
+    <div class="card-body">
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group ">
+                        <label for="Active">Active *</label>
+                        <input type="checkbox" [(ngModel)]="item.Active" name="Active" required>
+                        <div class="invalid-feedback">Value is required</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Created">Created</label>
+                        <input type="number" class="form-control" id="Created" [(ngModel)]="item.Created" name="Created" #Created="ngModel" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Data">Data</label>
+                        <input type="text" class="form-control" id="Data" [(ngModel)]="item.Data" name="Data" #Data="ngModel" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Modified">Modified</label>
+                        <input type="number" class="form-control" id="Modified" [(ngModel)]="item.Modified" name="Modified" #Modified="ngModel" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Order">Order</label>
+                        <input type="number" class="form-control" id="Order" [(ngModel)]="item.Order" name="Order" #Order="ngModel" >
+                    </div>
+                    <div class="form-group ">
+                        <label for="Protected">Protected</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Status">Status</label>
+                        <input type="text" class="form-control" id="Status" [(ngModel)]="item.Status" name="Status" #Status="ngModel" >
+                    </div>
+                    <!-- RELATIONS -->
+                    <h2 class="mb-20">Relations</h2>
+
+                    <label for="User">User</label>
+                    <select name="Creator" id="Creator" [(ngModel)]="item.Creator" class="form-control" #Creator="ngModel"  >
+                        <option *ngFor="let item of listCreator" [value]="item._id">{{item._id}}</option>
+                    </select>
+                    <label for="Item">Item</label>
+                    <select name="Link" id="Link" [(ngModel)]="item.Link" class="form-control" #Link="ngModel"  >
+                        <option *ngFor="let item of listLink" [value]="item._id">{{item._id}}</option>
+                    </select>
+                    <label for="Type">Type</label>
+                    <select name="Type" id="Type" [(ngModel)]="item.Type" class="form-control" #Type="ngModel"  required>
+                        <option *ngFor="let item of listType" [value]="item._id">{{item._id}}</option>
+                    </select>
+                        <div class="invalid-feedback">Value is required</div>
+
+                    
+        
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Save</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Back To List</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
