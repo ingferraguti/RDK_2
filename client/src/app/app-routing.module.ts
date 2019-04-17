@@ -40,7 +40,6 @@ const routes: Routes = [
     { path: 'blocktypes',  loadChildren: './pages/block-type-list/block-type-list.module#BlockTypeListModule' , canActivate: [AuthGuard] },
     { path: 'home',  loadChildren: './pages/home/home.module#HomeModule' , canActivate: [AuthGuard] },
     { path: 'items/:id',  loadChildren: './pages/item-edit/item-edit.module#ItemEditModule' , canActivate: [AuthGuard] },
-    { path: 'items/:id',  loadChildren: './pages/item-edit/item-edit.module#ItemEditModule' , canActivate: [AuthGuard] },
     { path: 'items',  loadChildren: './pages/item-list/item-list.module#ItemListModule' , canActivate: [AuthGuard] },
     { path: 'roles/:id',  loadChildren: './pages/role-edit/role-edit.module#RoleEditModule' , canActivate: [AuthGuard] },
     { path: 'roles',  loadChildren: './pages/role-list/role-list.module#RoleListModule' , canActivate: [AuthGuard] },
