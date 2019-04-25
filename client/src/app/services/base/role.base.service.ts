@@ -35,9 +35,16 @@ import { Role } from '../../domain/rapi-dev-kit_db/role';
  * SCHEMA DB Role
  *
 	{
+		Name: {
+			type: 'String'
+		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
-		Role: {
+		Privileges: {
+			type: Schema.ObjectId,
+			ref : "Block"
+		},
+		RolePrivileges: {
 			type: Schema.ObjectId,
 			ref : "User"
 		},

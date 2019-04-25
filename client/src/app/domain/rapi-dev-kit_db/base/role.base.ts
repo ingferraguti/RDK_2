@@ -26,4 +26,5 @@ export class RoleBase {
     constructor() { }
 
     public _id: string;
+    public Name?: string;
 }

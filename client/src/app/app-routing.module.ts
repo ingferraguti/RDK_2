@@ -11,10 +11,10 @@ import { BlockTypeEditComponent} from './pages/block-type-edit/block-type-edit.c
 import { BlockTypeListComponent} from './pages/block-type-list/block-type-list.component';
 import { ItemEditComponent} from './pages/item-edit/item-edit.component';
 import { ItemListComponent} from './pages/item-list/item-list.component';
+import { ItemTypeEditComponent} from './pages/item-type-edit/item-type-edit.component';
+import { ItemTypeListComponent} from './pages/item-type-list/item-type-list.component';
 import { RoleEditComponent} from './pages/role-edit/role-edit.component';
 import { RoleListComponent} from './pages/role-list/role-list.component';
-import { TypeEditComponent} from './pages/type-edit/type-edit.component';
-import { TypeListComponent} from './pages/type-list/type-list.component';
 
 /* END MY VIEWS IMPORT */
 
@@ -34,17 +34,16 @@ const routes: Routes = [
     /* START MY VIEWS */
 
     { path: 'blocks/:id',  loadChildren: './pages/block-edit/block-edit.module#BlockEditModule' , canActivate: [AuthGuard] },
-    { path: 'blocks/:id',  loadChildren: './pages/block-edit/block-edit.module#BlockEditModule' , canActivate: [AuthGuard] },
     { path: 'blocks',  loadChildren: './pages/block-list/block-list.module#BlockListModule' , canActivate: [AuthGuard], data:["ADMIN"] },
     { path: 'blocktypes/:id',  loadChildren: './pages/block-type-edit/block-type-edit.module#BlockTypeEditModule' , canActivate: [AuthGuard] },
     { path: 'blocktypes',  loadChildren: './pages/block-type-list/block-type-list.module#BlockTypeListModule' , canActivate: [AuthGuard] },
     { path: 'home',  loadChildren: './pages/home/home.module#HomeModule' , canActivate: [AuthGuard] },
     { path: 'items/:id',  loadChildren: './pages/item-edit/item-edit.module#ItemEditModule' , canActivate: [AuthGuard] },
     { path: 'items',  loadChildren: './pages/item-list/item-list.module#ItemListModule' , canActivate: [AuthGuard] },
+    { path: 'types/:id',  loadChildren: './pages/item-type-edit/item-type-edit.module#ItemTypeEditModule' , canActivate: [AuthGuard] },
+    { path: 'types',  loadChildren: './pages/item-type-list/item-type-list.module#ItemTypeListModule' , canActivate: [AuthGuard] },
     { path: 'roles/:id',  loadChildren: './pages/role-edit/role-edit.module#RoleEditModule' , canActivate: [AuthGuard] },
     { path: 'roles',  loadChildren: './pages/role-list/role-list.module#RoleListModule' , canActivate: [AuthGuard] },
-    { path: 'types/:id',  loadChildren: './pages/type-edit/type-edit.module#TypeEditModule' , canActivate: [AuthGuard] },
-    { path: 'types',  loadChildren: './pages/type-list/type-list.module#TypeListModule' , canActivate: [AuthGuard] },
 
  /* END MY VIEWS */
 

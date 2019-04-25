@@ -46,7 +46,13 @@ import { BlockType } from '../../domain/rapi-dev-kit_db/block-type';
 		//EXTERNAL RELATIONS
 		BlockType: {
 			type: Schema.ObjectId,
+			required : true,
 			ref : "Block"
+		},
+		ItemType: {
+			type: Schema.ObjectId,
+			required : true,
+			ref : "BlockType"
 		},
 	}
  *
@@ -109,6 +115,20 @@ export class BlockTypeBaseService {
             .get<BlockType>(this.contextUrl + '/' + id)
             .pipe(map(data => data));
     }
+
+    /**
+    * BlockTypeService.getItemType
+    *   @description CRUD ACTION getItemType
+    *   @param Objectid id ID of BlockType from ItemType
+    *
+    */
+    getItemType(id: string): Observable<any[]> {
+        return this.http
+            .get<any[]>(this.contextUrl + '/' + id + 'getItemType')
+            .pipe(
+                map(response => response)
+            );
+     }
 
     /**
     * BlockTypeService.list

@@ -27,7 +27,8 @@ const generatedModel = {
         required : true
       },
       role: {
-        type: "String"
+        type: "String", 
+        required : true
       },
       surname: {
         type: "String"
@@ -37,7 +38,7 @@ const generatedModel = {
         required : true
       },
       //RELATIONS
-      Role: {
+      RolePrivileges: {
         type: Schema.ObjectId,
         ref : "Role"
       },
@@ -94,6 +95,26 @@ const generatedModel = {
   */
   async delete(id) {
     return await generatedModel.model.findByIdAndRemove(id);
+  },
+  
+  /**
+  * UserModel.findByRolePrivileges
+  *   @description CRUD ACTION findByRolePrivileges
+  *   @param Objectid key Id of the resource RolePrivileges to search
+  *
+  */
+  async findByRolePrivileges(key) {
+    return await generatedModel.model.find({ 'RolePrivileges' : key});
+  },
+  
+  /**
+  * UserModel.findBymail
+  *   @description CRUD ACTION findBymail
+  *   @param Objectid key Id of the resource mail to search
+  *
+  */
+  async findBymail(key) {
+    return await generatedModel.model.find({ 'mail' : key});
   },
   
   /**

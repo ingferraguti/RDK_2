@@ -109,6 +109,63 @@ export class ItemBaseService {
     }
 
     /**
+    * ItemService.findByActive
+    *   @description CRUD ACTION findByActive
+    *   @param Objectid key Id of the resource Active to search
+    *
+    */
+    findByActive(id: string): Observable<Item[]> {
+        return this.http
+            .get<Item[]>(this.contextUrl + '/findByActive/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
+    * ItemService.findByCreated
+    *   @description CRUD ACTION findByCreated
+    *   @param Integer by start date
+    *   @param Integer to end date
+    *
+    */
+    findByCreated(id: string): Observable<Item[]> {
+        return this.http
+            .get<Item[]>(this.contextUrl + '/findByCreated/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
+    * ItemService.findByCreator
+    *   @description CRUD ACTION findByCreator
+    *   @param Objectid key Id of the resource Creator to search
+    *
+    */
+    findByCreator(id: string): Observable<Item[]> {
+        return this.http
+            .get<Item[]>(this.contextUrl + '/findByCreator/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
+    * ItemService.findByProtected
+    *   @description CRUD ACTION findByProtected
+    *   @param Objectid key Id of the resource Protected to search
+    *
+    */
+    findByProtected(id: string): Observable<Item[]> {
+        return this.http
+            .get<Item[]>(this.contextUrl + '/findByProtected/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
     * ItemService.findByType
     *   @description CRUD ACTION findByType
     *   @param Objectid key Id della risorsa Type da cercare
@@ -133,20 +190,6 @@ export class ItemBaseService {
             .get<Item>(this.contextUrl + '/' + id)
             .pipe(map(data => data));
     }
-
-    /**
-    * ItemService.getLink
-    *   @description CRUD ACTION getLink
-    *   @param Objectid id ID of Item from Link
-    *
-    */
-    getLink(id: string): Observable<any[]> {
-        return this.http
-            .get<any[]>(this.contextUrl + '/' + id + 'getLink')
-            .pipe(
-                map(response => response)
-            );
-     }
 
     /**
     * ItemService.getLink

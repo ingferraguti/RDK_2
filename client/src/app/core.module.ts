@@ -4,9 +4,8 @@ import { NgModule } from '@angular/core';
 import { BlockService } from './services/block.service';
 import { BlockTypeService } from './services/block-type.service';
 import { ItemService } from './services/item.service';
+import { ItemTypeService } from './services/item-type.service';
 import { RoleService } from './services/role.service';
-import { StatusService } from './services/status.service';
-import { TypeService } from './services/type.service';
 import { UserService } from './services/user.service';
 
 /* END MY SERVICES IMPORTS*/
@@ -24,9 +23,8 @@ import { AuthInterceptor } from './security/auth.interceptor';
     BlockService,
     BlockTypeService,
     ItemService,
+    ItemTypeService,
     RoleService,
-    StatusService,
-    TypeService,
     UserService,
  /* END PROVIDERS */
 

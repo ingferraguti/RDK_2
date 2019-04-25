@@ -13,10 +13,19 @@ const generatedModel = {
     const db = Database.getConnection();
 
     /**
-      * Role
+      * ItemType
       */
-    const roleSchema = new mongoose.Schema({
+    const itemtypeSchema = new mongoose.Schema({
       Name: {
+        type: "String"
+      },
+      Schema: {
+        type: "String"
+      },
+      Validation: {
+        type: "String"
+      },
+      Visualization: {
         type: "String"
       },
       //RELATIONS
@@ -24,18 +33,20 @@ const generatedModel = {
       
       //EXTERNAL RELATIONS
       /*
-      Privileges: {
-        type: Schema.ObjectId,
-        ref : "Block"
+      ItemType: {
+        type: Schema.ObjectId, 
+        required : true,
+        ref : "BlockType"
       },
-      RolePrivileges: {
-        type: Schema.ObjectId,
-        ref : "User"
+      Type: {
+        type: Schema.ObjectId, 
+        required : true,
+        ref : "Item"
       },
       */
     });
 
-    generatedModel.setModel(db.connection.model("Role", roleSchema));
+    generatedModel.setModel(db.connection.model("ItemType", itemtypeSchema));
   },
 
   /**
@@ -59,7 +70,7 @@ const generatedModel = {
 
 
   /**
-  * RoleModel.create
+  * ItemTypeModel.create
   *   @description CRUD ACTION create
   *
   */
@@ -69,7 +80,7 @@ const generatedModel = {
   },
   
   /**
-  * RoleModel.delete
+  * ItemTypeModel.delete
   *   @description CRUD ACTION delete
   *   @param ObjectId id Id
   *
@@ -79,7 +90,17 @@ const generatedModel = {
   },
   
   /**
-  * RoleModel.get
+  * ItemTypeModel.findByName
+  *   @description CRUD ACTION findByName
+  *   @param Objectid key Id of the resource Name to search
+  *
+  */
+  async findByName(key) {
+    return await generatedModel.model.find({ 'Name' : key});
+  },
+  
+  /**
+  * ItemTypeModel.get
   *   @description CRUD ACTION get
   *   @param ObjectId id Id 
   *
@@ -89,7 +110,7 @@ const generatedModel = {
   },
   
   /**
-  * RoleModel.list
+  * ItemTypeModel.list
   *   @description CRUD ACTION list
   *
   */
@@ -98,7 +119,7 @@ const generatedModel = {
   },
   
   /**
-  * RoleModel.update
+  * ItemTypeModel.update
   *   @description CRUD ACTION update
   *   @param ObjectId id Id
   *

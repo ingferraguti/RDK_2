@@ -29,9 +29,8 @@ import Database_RapiDevKit_db from "./Database_RapiDevKit_db.js";
 import BlockController from "../controllers/RapiDevKit_db/BlockController";
 import BlockTypeController from "../controllers/RapiDevKit_db/BlockTypeController";
 import ItemController from "../controllers/RapiDevKit_db/ItemController";
+import ItemTypeController from "../controllers/RapiDevKit_db/ItemTypeController";
 import RoleController from "../controllers/RapiDevKit_db/RoleController";
-import StatusController from "../controllers/RapiDevKit_db/StatusController";
-import TypeController from "../controllers/RapiDevKit_db/TypeController";
 import UserController from "../controllers/RapiDevKit_db/UserController";
 
 // End Import Controllers
@@ -90,9 +89,8 @@ class Server {
 		BlockController.init(router);
 		BlockTypeController.init(router);
 		ItemController.init(router);
+		ItemTypeController.init(router);
 		RoleController.init(router);
-		StatusController.init(router);
-		TypeController.init(router);
 		UserController.init(router);
 		 // End Init Controllers
 

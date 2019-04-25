@@ -11,9 +11,12 @@ const generatedControllers = {
     const baseUrl = `${Properties.api}/items`;
     router.post(baseUrl + "", authorize([]), generatedControllers.create);
     router.delete(baseUrl + "/:id", authorize([]), generatedControllers.delete);
+    router.get(baseUrl + "/findByActive/:key", authorize([]), generatedControllers.findByActive);
+    router.get(baseUrl + "/findByCreated/:key", authorize([]), generatedControllers.findByCreated);
+    router.get(baseUrl + "/findByCreator/:key", authorize([]), generatedControllers.findByCreator);
+    router.get(baseUrl + "/findByProtected/:key", authorize([]), generatedControllers.findByProtected);
     router.get(baseUrl + "/findByType/:key", authorize([]), generatedControllers.findByType);
     router.get(baseUrl + "/:id", authorize([]), generatedControllers.get);
-    router.get(baseUrl + "/:id/getLink", authorize([]), generatedControllers.getLink);
     router.get(baseUrl + "/:id/getLink", authorize([]), generatedControllers.getLink);
     router.get(baseUrl + "", authorize([]), generatedControllers.list);
     router.post(baseUrl + "/:id", authorize([]), generatedControllers.update);
@@ -55,6 +58,71 @@ const generatedControllers = {
   },
   
   /**
+  * ItemModel.findByActive
+  *   @description CRUD ACTION findByActive
+  *   @param Objectid key Id of the resource Active to search
+  *
+  */
+  findByActive: async (req, res) => {
+    try {
+      const result = await ItemModel.findByActive(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * ItemModel.findByCreated
+  *   @description CRUD ACTION findByCreated
+  *   @param Integer by start date
+  *   @param Integer to end date
+  *
+  */
+  findByCreated: async (req, res) => {
+    try {
+      const result = await ItemModel.findByCreated(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * ItemModel.findByCreator
+  *   @description CRUD ACTION findByCreator
+  *   @param Objectid key Id of the resource Creator to search
+  *
+  */
+  findByCreator: async (req, res) => {
+    try {
+      const result = await ItemModel.findByCreator(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * ItemModel.findByProtected
+  *   @description CRUD ACTION findByProtected
+  *   @param Objectid key Id of the resource Protected to search
+  *
+  */
+  findByProtected: async (req, res) => {
+    try {
+      const result = await ItemModel.findByProtected(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
   * ItemModel.findByType
   *   @description CRUD ACTION findByType
   *   @param Objectid key Id della risorsa Type da cercare
@@ -79,22 +147,6 @@ const generatedControllers = {
   get: async (req, res) => {
     try {
       const result = await ItemModel.get(req.params.id);
-      res.json(result);
-    } catch (err) {
-      const safeErr = ErrorManager.getSafeError(err);
-      res.status(safeErr.status).json(safeErr);
-    }
-  },
-  
-  /**
-  * ItemModel.getLink
-  *   @description CRUD ACTION getLink
-  *   @param Objectid id ID of Item from Link
-  *
-  */
-  getLink: async (req, res) => {
-    try {
-      const result = await ItemModel.getLink(req.params.id);
       res.json(result);
     } catch (err) {
       const safeErr = ErrorManager.getSafeError(err);

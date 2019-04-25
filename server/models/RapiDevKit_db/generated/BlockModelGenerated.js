@@ -23,14 +23,18 @@ const generatedModel = {
       FontendAPIHook: {
         type: "String"
       },
+      Settings: {
+        type: "String"
+      },
       //RELATIONS
       BlockType: {
-        type: Schema.ObjectId,
+        type: Schema.ObjectId, 
+        required : true,
         ref : "BlockType"
       },
-      ItemType: {
+      Privileges: {
         type: Schema.ObjectId,
-        ref : "Type"
+        ref : "Role"
       },
       
       
@@ -83,6 +87,36 @@ const generatedModel = {
   },
   
   /**
+  * BlockModel.findByActyve
+  *   @description CRUD ACTION findByActyve
+  *   @param Objectid key Id of the resource Actyve to search
+  *
+  */
+  async findByActyve(key) {
+    return await generatedModel.model.find({ 'Actyve' : key});
+  },
+  
+  /**
+  * BlockModel.findByBlockType
+  *   @description CRUD ACTION findByBlockType
+  *   @param Objectid key Id of the resource BlockType to search
+  *
+  */
+  async findByBlockType(key) {
+    return await generatedModel.model.find({ 'BlockType' : key});
+  },
+  
+  /**
+  * BlockModel.findByFontendAPIHook
+  *   @description CRUD ACTION findByFontendAPIHook
+  *   @param Objectid key Id of the resource FontendAPIHook to search
+  *
+  */
+  async findByFontendAPIHook(key) {
+    return await generatedModel.model.find({ 'FontendAPIHook' : key});
+  },
+  
+  /**
   * BlockModel.get
   *   @description CRUD ACTION get
   *   @param ObjectId id Id 
@@ -90,6 +124,16 @@ const generatedModel = {
   */
   async get(id) {
     return await generatedModel.model.findOne({_id: id});
+  },
+  
+  /**
+  * BlockModel.getBlockType
+  *   @description CRUD ACTION getBlockType
+  *   @param Objectid id ID of Block from BlockType
+  *
+  */
+  async getBlockType(id) {
+    return await generatedModel.model.findOne({ _id : id}).populate("BlockType")
   },
   
   /**

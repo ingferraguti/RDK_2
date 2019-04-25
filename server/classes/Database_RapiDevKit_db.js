@@ -10,9 +10,8 @@ import properties from "../properties.js";
 import BlockModel from "../models/RapiDevKit_db/BlockModel";
 import BlockTypeModel from "../models/RapiDevKit_db/BlockTypeModel";
 import ItemModel from "../models/RapiDevKit_db/ItemModel";
+import ItemTypeModel from "../models/RapiDevKit_db/ItemTypeModel";
 import RoleModel from "../models/RapiDevKit_db/RoleModel";
-import StatusModel from "../models/RapiDevKit_db/StatusModel";
-import TypeModel from "../models/RapiDevKit_db/TypeModel";
 import UserModel from "../models/RapiDevKit_db/UserModel";
 
 // End Import Models
@@ -32,9 +31,8 @@ class Database {
 		BlockModel.init();
 		BlockTypeModel.init();
 		ItemModel.init();
+		ItemTypeModel.init();
 		RoleModel.init();
-		StatusModel.init();
-		TypeModel.init();
 		UserModel.init();
  // End Init Models
   }

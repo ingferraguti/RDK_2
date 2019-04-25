@@ -24,12 +24,18 @@ const generatedModel = {
         required : true
       },
       //RELATIONS
+      ItemType: {
+        type: Schema.ObjectId, 
+        required : true,
+        ref : "ItemType"
+      },
       
       
       //EXTERNAL RELATIONS
       /*
       BlockType: {
-        type: Schema.ObjectId,
+        type: Schema.ObjectId, 
+        required : true,
         ref : "Block"
       },
       */
@@ -96,6 +102,16 @@ const generatedModel = {
   */
   async get(id) {
     return await generatedModel.model.findOne({_id: id});
+  },
+  
+  /**
+  * BlockTypeModel.getItemType
+  *   @description CRUD ACTION getItemType
+  *   @param Objectid id ID of BlockType from ItemType
+  *
+  */
+  async getItemType(id) {
+    return await generatedModel.model.findOne({ _id : id}).populate("ItemType")
   },
   
   /**

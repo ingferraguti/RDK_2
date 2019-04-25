@@ -42,13 +42,17 @@ import { Block } from '../../domain/rapi-dev-kit_db/block';
 		FontendAPIHook: {
 			type: 'String'
 		},
+		Settings: {
+			type: 'String'
+		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
 		BlockType: {
 			type: Schema.ObjectId,
+			required : true,
 			ref : "Block"
 		},
-		ItemType: {
+		Privileges: {
 			type: Schema.ObjectId,
 			ref : "Block"
 		},
@@ -89,6 +93,48 @@ export class BlockBaseService {
     }
 
     /**
+    * BlockService.findByActyve
+    *   @description CRUD ACTION findByActyve
+    *   @param Objectid key Id of the resource Actyve to search
+    *
+    */
+    findByActyve(id: string): Observable<Block[]> {
+        return this.http
+            .get<Block[]>(this.contextUrl + '/findByActyve/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
+    * BlockService.findByBlockType
+    *   @description CRUD ACTION findByBlockType
+    *   @param Objectid key Id of the resource BlockType to search
+    *
+    */
+    findByBlockType(id: string): Observable<Block[]> {
+        return this.http
+            .get<Block[]>(this.contextUrl + '/findByBlockType/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
+    * BlockService.findByFontendAPIHook
+    *   @description CRUD ACTION findByFontendAPIHook
+    *   @param Objectid key Id of the resource FontendAPIHook to search
+    *
+    */
+    findByFontendAPIHook(id: string): Observable<Block[]> {
+        return this.http
+            .get<Block[]>(this.contextUrl + '/findByFontendAPIHook/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
     * BlockService.get
     *   @description CRUD ACTION get
     *   @param ObjectId id Id 
@@ -99,6 +145,20 @@ export class BlockBaseService {
             .get<Block>(this.contextUrl + '/' + id)
             .pipe(map(data => data));
     }
+
+    /**
+    * BlockService.getBlockType
+    *   @description CRUD ACTION getBlockType
+    *   @param Objectid id ID of Block from BlockType
+    *
+    */
+    getBlockType(id: string): Observable<any[]> {
+        return this.http
+            .get<any[]>(this.contextUrl + '/' + id + 'getBlockType')
+            .pipe(
+                map(response => response)
+            );
+     }
 
     /**
     * BlockService.list

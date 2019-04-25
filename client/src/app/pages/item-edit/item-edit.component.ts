@@ -21,10 +21,7 @@ import { Type } from '../../domain/rapi-dev-kit_db/type';
 *	@description CRUD ACTION get
 *	@param ObjectId id Id 
 *
-* UserService.list
-*	@description CRUD ACTION list
-*
-* TypeService.list
+* ItemTypeService.list
 *	@description CRUD ACTION list
 *
 * ItemService.list

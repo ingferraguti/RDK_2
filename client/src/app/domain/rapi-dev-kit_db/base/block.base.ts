@@ -17,7 +17,7 @@
  *
  */
 import { BlockType } from '../block-type';
-import { Type } from '../type';
+import { Role } from '../role';
 
 /**
  * This is the model of Block object
@@ -30,8 +30,9 @@ export class BlockBase {
     public _id: string;
     public Actyve: Boolean;
     public FontendAPIHook?: string;
+    public Settings?: string;
     // Relations BlockType
     public BlockType: BlockType | string;
-    // Relations ItemType
-    public ItemType: Type | string;
+    // Relations Privileges
+    public Privileges: Role | string;
 }

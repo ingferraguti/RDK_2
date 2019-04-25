@@ -22,7 +22,7 @@ import { Type } from '../../domain/rapi-dev-kit_db/type';
 * BlockTypeService.list
 *	@description CRUD ACTION list
 *
-* TypeService.list
+* ItemTypeService.list
 *	@description CRUD ACTION list
 *
 * BlockService.update

@@ -12,6 +12,8 @@ const generatedControllers = {
     router.post(baseUrl + "/:id/changePassword", authorize(["ADMIN"]), generatedControllers.changePassword);
     router.post(baseUrl + "", authorize([]), generatedControllers.create);
     router.delete(baseUrl + "/:id", authorize([]), generatedControllers.delete);
+    router.get(baseUrl + "/findByRolePrivileges/:key", authorize([]), generatedControllers.findByRolePrivileges);
+    router.get(baseUrl + "/findBymail/:key", authorize([]), generatedControllers.findBymail);
     router.get(baseUrl + "/:id", authorize([]), generatedControllers.get);
     router.get(baseUrl + "", authorize([]), generatedControllers.list);
     router.post(baseUrl + "/:id", authorize([]), generatedControllers.update);
@@ -45,6 +47,38 @@ const generatedControllers = {
   delete: async (req, res) => {
     try {
       const result = await UserModel.delete(req.params.id);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * UserModel.findByRolePrivileges
+  *   @description CRUD ACTION findByRolePrivileges
+  *   @param Objectid key Id of the resource RolePrivileges to search
+  *
+  */
+  findByRolePrivileges: async (req, res) => {
+    try {
+      const result = await UserModel.findByRolePrivileges(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * UserModel.findBymail
+  *   @description CRUD ACTION findBymail
+  *   @param Objectid key Id of the resource mail to search
+  *
+  */
+  findBymail: async (req, res) => {
+    try {
+      const result = await UserModel.findBymail(req.params.key);
       res.json(result);
     } catch (err) {
       const safeErr = ErrorManager.getSafeError(err);

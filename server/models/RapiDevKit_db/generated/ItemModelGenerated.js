@@ -50,7 +50,7 @@ const generatedModel = {
       Type: {
         type: Schema.ObjectId, 
         required : true,
-        ref : "Type"
+        ref : "ItemType"
       },
       
       
@@ -103,6 +103,47 @@ const generatedModel = {
   },
   
   /**
+  * ItemModel.findByActive
+  *   @description CRUD ACTION findByActive
+  *   @param Objectid key Id of the resource Active to search
+  *
+  */
+  async findByActive(key) {
+    return await generatedModel.model.find({ 'Active' : key});
+  },
+  
+  /**
+  * ItemModel.findByCreated
+  *   @description CRUD ACTION findByCreated
+  *   @param Integer by start date
+  *   @param Integer to end date
+  *
+  */
+  async findByCreated(key) {
+    return await generatedModel.model.find({ 'Created' : key});
+  },
+  
+  /**
+  * ItemModel.findByCreator
+  *   @description CRUD ACTION findByCreator
+  *   @param Objectid key Id of the resource Creator to search
+  *
+  */
+  async findByCreator(key) {
+    return await generatedModel.model.find({ 'Creator' : key});
+  },
+  
+  /**
+  * ItemModel.findByProtected
+  *   @description CRUD ACTION findByProtected
+  *   @param Objectid key Id of the resource Protected to search
+  *
+  */
+  async findByProtected(key) {
+    return await generatedModel.model.find({ 'Protected' : key});
+  },
+  
+  /**
   * ItemModel.findByType
   *   @description CRUD ACTION findByType
   *   @param Objectid key Id della risorsa Type da cercare
@@ -120,16 +161,6 @@ const generatedModel = {
   */
   async get(id) {
     return await generatedModel.model.findOne({_id: id});
-  },
-  
-  /**
-  * ItemModel.getLink
-  *   @description CRUD ACTION getLink
-  *   @param Objectid id ID of Item from Link
-  *
-  */
-  async getLink(id) {
-    return await generatedModel.model.findOne({ _id : id}).populate("Link")
   },
   
   /**

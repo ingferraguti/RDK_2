@@ -11,7 +11,11 @@ const generatedControllers = {
     const baseUrl = `${Properties.api}/blocks`;
     router.post(baseUrl + "", authorize([]), generatedControllers.create);
     router.delete(baseUrl + "/:id", authorize([]), generatedControllers.delete);
+    router.get(baseUrl + "/findByActyve/:key", authorize([]), generatedControllers.findByActyve);
+    router.get(baseUrl + "/findByBlockType/:key", authorize([]), generatedControllers.findByBlockType);
+    router.get(baseUrl + "/findByFontendAPIHook/:key", authorize([]), generatedControllers.findByFontendAPIHook);
     router.get(baseUrl + "/:id", authorize([]), generatedControllers.get);
+    router.get(baseUrl + "/:id/getBlockType", authorize([]), generatedControllers.getBlockType);
     router.get(baseUrl + "", authorize([]), generatedControllers.list);
     router.post(baseUrl + "/:id", authorize([]), generatedControllers.update);
   },
@@ -52,6 +56,54 @@ const generatedControllers = {
   },
   
   /**
+  * BlockModel.findByActyve
+  *   @description CRUD ACTION findByActyve
+  *   @param Objectid key Id of the resource Actyve to search
+  *
+  */
+  findByActyve: async (req, res) => {
+    try {
+      const result = await BlockModel.findByActyve(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * BlockModel.findByBlockType
+  *   @description CRUD ACTION findByBlockType
+  *   @param Objectid key Id of the resource BlockType to search
+  *
+  */
+  findByBlockType: async (req, res) => {
+    try {
+      const result = await BlockModel.findByBlockType(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * BlockModel.findByFontendAPIHook
+  *   @description CRUD ACTION findByFontendAPIHook
+  *   @param Objectid key Id of the resource FontendAPIHook to search
+  *
+  */
+  findByFontendAPIHook: async (req, res) => {
+    try {
+      const result = await BlockModel.findByFontendAPIHook(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
   * BlockModel.get
   *   @description CRUD ACTION get
   *   @param ObjectId id Id 
@@ -60,6 +112,22 @@ const generatedControllers = {
   get: async (req, res) => {
     try {
       const result = await BlockModel.get(req.params.id);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * BlockModel.getBlockType
+  *   @description CRUD ACTION getBlockType
+  *   @param Objectid id ID of Block from BlockType
+  *
+  */
+  getBlockType: async (req, res) => {
+    try {
+      const result = await BlockModel.getBlockType(req.params.id);
       res.json(result);
     } catch (err) {
       const safeErr = ErrorManager.getSafeError(err);

@@ -30,9 +30,9 @@ export class UserBase {
     public mail?: string;
     public name?: string;
     public password: string;
-    public role?: string;
+    public role: string;
     public surname?: string;
     public username: string;
-    // Relations Role
-    public Role: Role | string;
+    // Relations RolePrivileges
+    public RolePrivileges: Role | string;
 }

@@ -18,7 +18,7 @@
  */
 import { User } from '../user';
 import { Item } from '../item';
-import { Type } from '../type';
+import { ItemType } from '../item-type';
 
 /**
  * This is the model of Item object
@@ -41,5 +41,5 @@ export class ItemBase {
     // Relations Link
     public Link: Item | string;
     // Relations Type
-    public Type: Type | string;
+    public Type: ItemType | string;
 }
